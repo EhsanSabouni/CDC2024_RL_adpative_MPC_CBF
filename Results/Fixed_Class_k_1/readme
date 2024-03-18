@@ -1,9 +1,0 @@
-# Fixed class k function where the merging class k values are 1 (all others are also 1)
-#and the objective is 2,2,2,2
-#The scenario includes 3 cars
-    car0 = {"id": 0, "t0": 4.5, "v": 5, "road": 1}
-    car1 = {"id": 1, "t0": 5.4, "v": 15, "road": 0}
-    car2 = {"id": 2, "t0": 6.8, "v": 14.5, "road": 1}
-
-Figres are, acc,steering, velocity, classk_merging values, merging constraint and CBF values
-Other hyper parameters: N = 5
