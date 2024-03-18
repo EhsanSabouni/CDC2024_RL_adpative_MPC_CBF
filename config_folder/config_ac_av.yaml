@@ -1,0 +1,72 @@
+defaults:
+  - _self_
+  - agent@_global_: sac
+  - mpc@_global_: mpc_agent
+  - override hydra/launcher: submitit_local
+
+
+env: AutonomousCar #CartPole-BT-dL-v0, CartPole-BT-dH-v0
+num_train_states: 1000000
+std: 0.5
+stddev_schedule: 'linear(${std},0.01,100000)'
+action_repeat: 1 #no used
+# train settings
+num_seed_states: 200 #1600
+# eval
+eval_every_states: 2000
+num_eval_episodes: 5
+save_Freq : 10000
+# snapshot
+save_snapshot: false
+# replay buffer
+replay_buffer_size: 50000
+# misc
+seed: 9
+device_id: 0
+device: cuda:${device_id}
+save_record: true
+use_tb: true
+# experiment
+experiment: exp
+hidden_depth: 2
+actor_lr: 1e-5
+action_range: [-1.0, 1.0]
+critic_lr: 1e-4
+critic_tau: 0.005
+alpha_lr: 1e-4
+batch_size: 1024
+actor_update_frequency : 5
+traffic_eval : 10
+num_expl_steps: ${num_seed_states}
+params_range: [[0.1, 5], [0.1, 5], [0.1, 5], [0.1, 5],
+               [0.1, 5], [0.1, 5], [0.1, 5], [0.1, 5], [0.1, 5], [0.1, 5],
+               [0.1, 5], [0.1, 5], [0.1, 5], [0.1, 5], [0.1, 5], [0.1, 5],
+               [0.0001, 1], [0.0001, 1], [0.0001, 1], [0.0001, 1]]
+experiment_mode: 2 #0, 1, 2, 3
+explor_type: 0 #0,1,2
+road : 1 #0,1
+#MPC config
+T: 30
+verbose: -1
+eps: 1e-2
+exit_unconverged: false
+horizon: 5
+sampling_time: 0.2
+cbf_type: 1
+reward_type : 3
+
+  
+hydra:
+  run:
+    dir: ./experiments/exp_${agent_name}/${now:%Y.%m.%d}_${now:%H%M}_${hydra.job.override_dirname}
+  sweep:
+    dir: ./experiments/exp_multirun_${agent_name}
+    subdir: ${now:%Y.%m.%d}_${now:%H%M}_${hydra.job.override_dirname}
+  launcher:
+    timeout_min: 18000000
+    cpus_per_task: 10
+    gpus_per_node: 1
+    tasks_per_node: 1
+    mem_gb: 160
+    nodes: 1
+    submitit_folder: ./experiments/exp_multirun_${agent_name}/${now:%Y.%m.%d}_${now:%H%M}

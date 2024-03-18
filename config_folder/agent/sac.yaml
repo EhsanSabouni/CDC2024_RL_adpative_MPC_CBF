@@ -1,0 +1,28 @@
+
+agent_name: sac
+
+agent:
+  _target_: agents.sac.SACAgent
+  obs_dim: ??? # to be specified later
+  net_action_dim: ??? # to be specified later
+  ctrl_dim: ???
+  ctrl_horizon_dim: ??? 
+  action_range: ${action_range} # to be specified later
+  device: ${device}
+  hidden_dim: 512
+  hidden_depth: ${hidden_depth}
+  discount: 0.99
+  init_temperature: 0.1
+  alpha_lr: ${alpha_lr}
+  alpha_betas: [0.9, 0.999]
+  actor_lr: ${actor_lr}
+  actor_betas: [0.9, 0.999]
+  actor_update_frequency: ${actor_update_frequency}
+  critic_lr: ${critic_lr}
+  critic_betas: [0.9, 0.999]
+  critic_tau: ${critic_tau}
+  critic_target_update_frequency: 2
+  batch_size: 1024
+  learnable_temperature: true
+  log_std_bounds: [-10, 10]
+  use_tb: ${use_tb}

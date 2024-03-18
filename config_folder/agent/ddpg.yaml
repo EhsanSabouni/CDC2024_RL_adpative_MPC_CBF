@@ -1,0 +1,26 @@
+
+agent_name: ddpg
+
+agent:
+  _target_: agents.ddpg.DDPG_Agent
+  obs_dim: ??? # to be specified later
+  net_action_dim: ??? # to be specified later
+  ctrl_dim: ???
+  ctrl_horizon_dim: ??? 
+  action_range: ${action_range} # to be specified later
+  device: ${device}
+  hidden_dim: 1024
+  hidden_depth: ${hidden_depth}
+  discount: 0.99
+  actor_lr: ${actor_lr}
+  actor_betas: [0.9, 0.999]
+  actor_update_frequency: 1
+  critic_lr: ${critic_lr}
+  critic_betas: [0.9, 0.999]
+  critic_tau: ${critic_tau}
+  critic_target_update_frequency: 2
+  batch_size: ${batch_size}
+  use_tb: ${use_tb}
+  num_expl_steps: ${num_expl_steps}
+  stddev_schedule: ${stddev_schedule}
+  stddev_clip: 0.3

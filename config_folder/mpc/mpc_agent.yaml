@@ -1,0 +1,20 @@
+
+mpc:
+  _target_: mpc.mpc.MPC
+  n_state: ??? # to be specified later
+  n_ctrl: ??? # to be specified later
+  u_lower: ??? # to be specified later
+  u_upper: ??? # to be specified later
+  T: ${T}
+  lqr_iter: ${lqr_iter}
+  verbose: ${verbose}
+  eps: ${eps}
+  back_eps: 1e-7
+  linesearch_decay: 0.2
+  max_linesearch_iter: 10
+  exit_unconverged: ${exit_unconverged}
+  detach_unconverged: true
+  backprop: true
+  not_improved_lim: 5
+  best_cost_eps: 1e-4
+  # grad_method: autodiff
