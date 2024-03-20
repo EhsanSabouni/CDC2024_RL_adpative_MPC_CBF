@@ -4,8 +4,6 @@ The repository contains the simulation code for the paper "Reinforcement Learnin
 
 ## Table of Contents
 
-%- [About](#about)
-%- [Features](#features)
 - [Installation](#installation)
 - [Usage](#usage)
 - [Contributing](#contributing)
