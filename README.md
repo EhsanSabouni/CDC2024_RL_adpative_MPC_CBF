@@ -1,7 +1,6 @@
 # Reinforcement Learning-based Adaptive Control Barrier Functions using Receding Horizon Control for Safety-Critical Systems
 
-Brief description of your project.
-
+The repository contains the simulation codes for the paper "Reinforcement Learning-based Adaptive Control Barrier Functions using Receding Horizon Control for Safety-Critical Systems".
 ## Table of Contents
 
 - [About](#about)
