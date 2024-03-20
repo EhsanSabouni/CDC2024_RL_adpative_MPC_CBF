@@ -27,3 +27,5 @@ List the key features of your project here.
 
 Explain how to install your project. You can include prerequisites, step-by-step installation instructions, and any additional setup required.
 
+## License
+
