@@ -1,4 +1,4 @@
-# Project Name
+# Reinforcement Learning-based Adaptive Control Barrier Functions using Receding Horizon Control for Safety-Critical Systems
 
 Brief description of your project.
 
