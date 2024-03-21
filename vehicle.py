@@ -9,7 +9,7 @@ class Car:
         self.id = id
         self.t0 = t0
         self.road = road
-        self.lf = 0.39
+        self.lf = 0.38
         self.lr = 0.39
         self.x = x
         self.y = y
