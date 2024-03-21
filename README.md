@@ -7,6 +7,7 @@ The repository contains the simulation code for the paper "Reinforcement Learnin
 - [Installation](#installation)
 - [Contributing](#contributing)
 - [License](#license)
+- [Contributers](#contributors)
 
 ## Installation
 
