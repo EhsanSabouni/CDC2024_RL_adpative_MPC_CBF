@@ -23,15 +23,6 @@ Provide a more detailed description of your project here. Explain its purpose, i
 <p align="center">
   <img src="mixed_video.gif">
 </p>
-## Features -->
-
-List the key features of your project here.
-
-- Feature 1
-- Feature 2
-- ...
-
-
 
 Then download/clone the repository.
 ## License
