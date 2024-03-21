@@ -9,6 +9,15 @@ The repository contains the simulation code for the paper "Reinforcement Learnin
 - [License](#license)
 - [Contributers](#contributors)
 
+
+[![License](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
+[![GitHub contributors](https://img.shields.io/github/contributors/username/repository.svg)](https://GitHub.com/username/repository/graphs/contributors/)
+[![GitHub issues](https://img.shields.io/github/issues/username/repository.svg)](https://GitHub.com/username/repository/issues/)
+[![GitHub pull-requests](https://img.shields.io/github/issues-pr/username/repository.svg)](https://GitHub.com/username/repository/pulls/)
+[![GitHub forks](https://img.shields.io/github/forks/username/repository.svg?style=social&label=Fork&maxAge=2592000)](https://GitHub.com/username/repository/network/)
+[![GitHub stars](https://img.shields.io/github/stars/username/repository.svg?style=social&label=Star&maxAge=2592000)](https://GitHub.com/username/repository/stargazers/)
+
+
 ## Compatibility
 This code has been tested on ubuntu 20.04. Although there should be no difficulty with running it on windows 10+ 
 ## Installation
