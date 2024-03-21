@@ -16,6 +16,7 @@ Please setup the conda environment by running the following command.
 ```
 conda env create -n envName -f environment.yml
 ```
+Then download/clone the repository.
 
 ## About
 
@@ -24,6 +25,5 @@ Provide a more detailed description of your project here. Explain its purpose, i
   <img src="mixed_video.gif">
 </p>
 
-Then download/clone the repository.
 ## License
 
