@@ -3,12 +3,15 @@
 The repository contains the simulation code for the paper "Reinforcement Learning-based Adaptive Control Barrier Functions using Receding Horizon Control for Safety-Critical Systems" submitted at CDC 2024.
 
 ## Table of Contents
-
+- [Compatibility](#compatibility)
 - [Installation](#installation)
 - [Contributing](#contributing)
 - [License](#license)
 - [Contributers](#contributors)
+- 
 
+## Compatibility
+This code has been tested on ubuntu 20.04.
 ## Installation
 
 Please setup the conda environment by running the following command.
