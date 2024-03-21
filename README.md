@@ -9,6 +9,14 @@ The repository contains the simulation code for the paper "Reinforcement Learnin
 - [Contributing](#contributing)
 - [License](#license)
 
+## Installation
+
+Please setup the conda environment by running the following command.
+
+```
+conda env create -n envName -f environment.yml
+```
+
 ## About
 
 Provide a more detailed description of your project here. Explain its purpose, its features, and any other relevant information.
@@ -23,13 +31,7 @@ List the key features of your project here.
 - Feature 2
 - ...
 
-## Installation
 
-Please setup the conda environment by running the following command.
-
-```
-conda env create -n envName -f environment.yml
-```
 
 Then download/clone the repository.
 ## License
