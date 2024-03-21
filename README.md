@@ -24,7 +24,7 @@ Then download/clone the repository.
 ## Results
 This is the video of the simulation results presented in the paper as a concept of proof for feasiblity improvement.
 <p align="center">
-  <img src="mixed_video.gif">
+  <img src="mixed_video1.gif">
 </p>
 
 
