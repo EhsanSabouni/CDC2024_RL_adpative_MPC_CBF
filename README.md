@@ -25,7 +25,13 @@ This is the video of the simulation results presented in the paper as a concept 
 <p align="center">
   <img src="mixed_video.gif">
 </p>
+
+
 To generate the neumerical results shown in the table I, please run the following command.
+```
+conda env create -n envName -f environment.yml
+```
+
 ```
 python train_RL_env_MPC_AV.py
 ```
