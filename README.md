@@ -47,6 +47,8 @@ python train_RL_env_MPC_AV.py render_mode=None
 ```
 ## License
 
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
 ### Contributors
 
 Thanks to the following people who have contributed to this project:
