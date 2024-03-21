@@ -1,6 +1,6 @@
 # Reinforcement Learning-based Adaptive Control Barrier Functions using Receding Horizon Control for Safety-Critical Systems
 [![License](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
-[![GitHub contributors](https://img.shields.io/github/contributors/SabbirAhmad26/repository.svg)](https://GitHub.com/username/repository/graphs/contributors/)
+[![GitHub contributors](https://img.shields.io/github/contributors/SabbirAhmad26/repository.svg)](https://github.com/SabbirAhmad26)
 [![GitHub issues](https://img.shields.io/github/issues/username/repository.svg)](https://GitHub.com/username/repository/issues/)
 [![GitHub pull-requests](https://img.shields.io/github/issues-pr/username/repository.svg)](https://GitHub.com/username/repository/pulls/)
 [![GitHub forks](https://img.shields.io/github/forks/username/repository.svg?style=social&label=Fork&maxAge=2592000)](https://GitHub.com/username/repository/network/)
