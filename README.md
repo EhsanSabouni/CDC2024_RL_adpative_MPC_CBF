@@ -51,4 +51,4 @@ python train_RL_env_MPC_AV.py render_mode=None
 Thanks to the following people who have contributed to this project:
 
 - [Sabbir H M Ahmad](https://github.com/SabbirAhmad26)
-- [VittorioGiammarino](https://github.com/VittorioGiammarino)
+- [Vittorio Giammarino](https://github.com/VittorioGiammarino)
