@@ -18,9 +18,8 @@ conda env create -n envName -f environment.yml
 ```
 Then download/clone the repository.
 
-## About
-
-Provide a more detailed description of your project here. Explain its purpose, its features, and any other relevant information.
+## Results
+This is the video of the simulation results presented in the paper as a concept of proof for feasiblity improvement.
 <p align="center">
   <img src="mixed_video.gif">
 </p>
