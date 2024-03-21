@@ -8,7 +8,6 @@ The repository contains the simulation code for the paper "Reinforcement Learnin
 - [Contributing](#contributing)
 - [License](#license)
 - [Contributers](#contributors)
-- 
 
 ## Compatibility
 This code has been tested on ubuntu 20.04. Although there should be no difficulty with running it on windows 10+ 
@@ -26,6 +25,9 @@ This is the video of the simulation results presented in the paper as a concept 
 <p align="center">
   <img src="mixed_video.gif">
 </p>
-
+To generate the neumerical results shown in the table I, please run the following command.
+```
+python train_RL_env_MPC_AV.py
+'''
 ## License
 
