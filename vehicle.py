@@ -5,16 +5,16 @@ import casadi as cd
 from circle_fit import taubinSVD
 import time
 class Car:
-    def __init__(self, coordinates, id, t0, road: int, N:int, method: str):
+    def __init__(self, coordinates, id, t0, road: int, N:int, method: str, x=0, y=0, psi=0, v0=0):
         self.id = id
         self.t0 = t0
         self.road = road
         self.lf = 0.39
         self.lr = 0.39
-        self.x = 0
-        self.y = 0
-        self.v = 0
-        self.psi = 0
+        self.x = x
+        self.y = y
+        self.v = v0
+        self.psi = psi
         self.acc = 0
         self.steer = 0
         self.method = 'bicyclemodel'

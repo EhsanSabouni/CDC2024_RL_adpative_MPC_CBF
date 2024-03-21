@@ -378,3 +378,12 @@ def normalize(states, road):
         states_normalized[k] = (states[k] - min_vec[k]) / norm_vec[k]
 
     return states_normalized
+
+
+class InvalidInputError(Exception):
+    def __init__(self, message, input_value):
+        self.message = message
+        self.input_value = input_value
+
+    def __str__(self):
+        return f"{self.message}: {self.input_value}"

@@ -7,7 +7,7 @@ os.environ["CUDA_VISIBLE_DEVICES"]="0,1,2,3"  # specify which GPU(s) to be used
 from pathlib import Path
 import hydra
 import numpy as np
-
+import warnings
 import torch
 from utils_folder import utils
 from logger_folder.logger import Logger
@@ -16,7 +16,8 @@ from traffic_eval import traffic_env_eval
 from map import map
 from vehicle import Car
 from mpcenv import MPCCarEnv
-
+warnings.filterwarnings("ignore")
+warnings.filterwarnings( "ignore", module = "matplotlib\..*" )
 torch.backends.cudnn.benchmark = True
 
 def make_agent(obs_spec, net_action_spec, ctrl_dim, ctrl_horizon_dim, cfg):
@@ -46,6 +47,11 @@ class Workspace(object):
                                 ctrl_horizon_space,
                                 self.cfg.agent)
 
+        total_num_cars = 29
+        self.te = traffic_env_eval(self.cfg.params_range, self.train_env.parameters_space.shape, self.cfg.agent.hidden_dim,
+                                   total_num_cars, self.cfg.horizon, self.cfg.sampling_time, self.cfg.agent, render_mode = 'Visualization')
+
+
         self.timer = utils.Timer()
         self._global_step = 0
         self._global_episode = 0
@@ -65,8 +71,6 @@ class Workspace(object):
         self.train_env = MPCCarEnv(coordinates, vehicle_train, dt, self.cfg.experiment_mode, 0, self.cfg.cbf_type, self.cfg.reward_type, self.cfg.explor_type, render_mode= None,  size=5, controller_type='mpc')
         vehicle_eval = Car(coordinates, 0,0, self.cfg.road, N, 'bicyclemodel')  # Initilizing a car (object)
         self.eval_env = MPCCarEnv(coordinates, vehicle_eval, dt, self.cfg.experiment_mode, 1, self.cfg.cbf_type, self.cfg.reward_type, self.cfg.explor_type, render_mode= None, size=5, controller_type='mpc')
-        total_num_cars = 6
-        self.te = traffic_env_eval(self.cfg.params_range, self.train_env.parameters_space.shape, total_num_cars, N, dt, None)
 
         ctrl_horizon_space = (self.train_env.parameters_space.shape[0],)  #need to adjust T
         self.replay_buffer = ReplayBuffer(self.train_env.full_observation_space_dim,
@@ -97,8 +101,8 @@ class Workspace(object):
         return value
     
     def eval_MPC(self):
-        flag = 0
-        ave_time, ave_fuel, ave_u2,_ = self.te.main(self.agent, flag)
+        flag = 1
+        ave_time, ave_fuel, ave_u2,_ = self.te.main(self.agent, self.cfg.method, self.cfg.type)
         with self.logger.log_and_dump_ctx(self.global_step, ty='traffic_eval') as log:
             log('ave_time', ave_time)
             log('ave_u2', ave_u2)
@@ -252,8 +256,7 @@ class Workspace(object):
             self.train_env.render()
             if self.global_step % self.cfg.save_Freq == 0:
                 torch.save(self.agent.actor.state_dict(), model_path)
-                self.eval_MPC()
-            
+
     def save_snapshot(self):
         snapshot = self.work_dir / f'snapshot_{self.cfg.task_name}.pt'
         keys_to_save = ['agent', 'timer', '_global_step', '_global_episode']
@@ -272,7 +275,12 @@ class Workspace(object):
 def main(cfg):
     from train_RL_env_MPC_AV import Workspace as W
     workspace = W(cfg)
-    workspace.train()
+    if cfg.method == 'training':
+        workspace.train()
+    else:
+        workspace.eval_MPC()
+
+
 
 if __name__ == '__main__':
     main()

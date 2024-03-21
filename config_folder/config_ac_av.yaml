@@ -54,8 +54,10 @@ horizon: 5
 sampling_time: 0.2
 cbf_type: 1
 reward_type : 3
+method : baseline
+type: a
 
-  
+
 hydra:
   run:
     dir: ./experiments/exp_${agent_name}/${now:%Y.%m.%d}_${now:%H%M}_${hydra.job.override_dirname}
