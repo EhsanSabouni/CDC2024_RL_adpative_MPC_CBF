@@ -11,7 +11,7 @@ The repository contains the simulation code for the paper "Reinforcement Learnin
 - 
 
 ## Compatibility
-This code has been tested on ubuntu 20.04.
+This code has been tested on ubuntu 20.04. Altough there should be no difficulty with running it on windows 10+ 
 ## Installation
 
 Please setup the conda environment by running the following command.
