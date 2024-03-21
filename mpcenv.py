@@ -51,7 +51,7 @@ class MPCCarEnv(gym.Env):
         # We have 2 actions, corresponding acceleration and steering
         self.action_space = spaces.Box(low=np.array([self.agent.umin, self.agent.steermin]), high=np.array([self.agent.umax, self.agent.steermax]), dtype=np.float32)
         self._agent_states = self.agent.get_states()
-        assert render_mode is None or render_mode in self.metadata["render_modes"]
+        #assert render_mode is None or render_mode in self.metadata["render_modes"]
         self.render_mode = render_mode
         if render_mode == "Visualization":
             plt.style.use('seaborn-v0_8')

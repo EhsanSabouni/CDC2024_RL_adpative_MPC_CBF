@@ -163,42 +163,43 @@ class traffic_env():
         return cv2.warpAffine(image, M, (nW, nH), borderValue=(255, 255, 255))
 
     def render(self, vehicles):
-        self.fig.suptitle('vehicle path')
-        self.ax.plot(self.mainroad['X_C'], self.mainroad['Y_C'], 'y--')
-        self.ax.plot(self.mainroad['X_R'][:-97 - 120], self.mainroad['Y_R'][:-97 - 120], 'k')
-        self.ax.plot(self.mainroad['X_L'], self.mainroad['Y_L'], 'k')
-        self.ax.plot(self.mergingroad['X_C'], self.mergingroad['Y_C'], 'y--')
-        self.ax.plot(self.mergingroad['X_L'][:-97 - 120], self.mergingroad['Y_L'][:-97 - 120], 'k')
-        self.ax.plot(self.mergingroad['X_R'], self.mergingroad['Y_R'], 'k')
-        for car in range(0, len(vehicles)):
+        if self.render_mode == 'Visualization':
+            self.fig.suptitle('vehicle path')
+            self.ax.plot(self.mainroad['X_C'], self.mainroad['Y_C'], 'y--')
+            self.ax.plot(self.mainroad['X_R'][:-97 - 120], self.mainroad['Y_R'][:-97 - 120], 'k')
+            self.ax.plot(self.mainroad['X_L'], self.mainroad['Y_L'], 'k')
+            self.ax.plot(self.mergingroad['X_C'], self.mergingroad['Y_C'], 'y--')
+            self.ax.plot(self.mergingroad['X_L'][:-97 - 120], self.mergingroad['Y_L'][:-97 - 120], 'k')
+            self.ax.plot(self.mergingroad['X_R'], self.mergingroad['Y_R'], 'k')
+            for car in range(0, len(vehicles)):
 
-            # Set initial position and orientation
-            x = vehicles[car].x  # initial x-coordinate
-            y = vehicles[car].y  # initial y-coordinate
-            if vehicles[car].road == 0:
-                coeff = 5
-            else:
-                if vehicles[car].x >= 2.5:
-                    coeff = 15
-                else:
+                # Set initial position and orientation
+                x = vehicles[car].x  # initial x-coordinate
+                y = vehicles[car].y  # initial y-coordinate
+                if vehicles[car].road == 0:
                     coeff = 5
+                else:
+                    if vehicles[car].x >= 2.5:
+                        coeff = 15
+                    else:
+                        coeff = 5
 
-            theta = 180 - coeff - (vehicles[car].psi / np.pi * 180)  # initial orientation angle (in radians)
-            # Transformation matrix for translation and rotation
-            current_directory = os.path.dirname(__file__)
-            phot_dir = os.path.join(current_directory, 'car.png')
-            img = mpimg.imread(phot_dir)
-            rotated = self.rotate_bound(img, theta)
-            rotated_image_clipped = np.clip(rotated, 0, 1)
-            imagebox = OffsetImage(rotated_image_clipped, zoom=0.1)
+                theta = 180 - coeff - (vehicles[car].psi / np.pi * 180)  # initial orientation angle (in radians)
+                # Transformation matrix for translation and rotation
+                current_directory = os.path.dirname(__file__)
+                phot_dir = os.path.join(current_directory, 'car.png')
+                img = mpimg.imread(phot_dir)
+                rotated = self.rotate_bound(img, theta)
+                rotated_image_clipped = np.clip(rotated, 0, 1)
+                imagebox = OffsetImage(rotated_image_clipped, zoom=0.08)
 
-            # Annotation box for solar pv logo
-            ab = AnnotationBbox(imagebox, (x, y), frameon=False)
-            self.ax.add_artist(ab)
+                # Annotation box for solar pv logo
+                ab = AnnotationBbox(imagebox, (x, y), frameon=False)
+                self.ax.add_artist(ab)
 
-        self.fig.canvas.draw()
-        self.fig.canvas.flush_events()
-        self.ax.clear()
+            self.fig.canvas.draw()
+            self.fig.canvas.flush_events()
+            self.ax.clear()
         return None
 
 

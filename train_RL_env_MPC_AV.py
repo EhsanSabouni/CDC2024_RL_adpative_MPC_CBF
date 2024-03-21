@@ -7,7 +7,6 @@ os.environ["CUDA_VISIBLE_DEVICES"]="0,1,2,3"  # specify which GPU(s) to be used
 from pathlib import Path
 import hydra
 import numpy as np
-import warnings
 import torch
 from utils_folder import utils
 from logger_folder.logger import Logger
@@ -16,8 +15,6 @@ from traffic_eval import traffic_env_eval
 from map import map
 from vehicle import Car
 from mpcenv import MPCCarEnv
-warnings.filterwarnings("ignore")
-warnings.filterwarnings( "ignore", module = "matplotlib\..*" )
 torch.backends.cudnn.benchmark = True
 
 def make_agent(obs_spec, net_action_spec, ctrl_dim, ctrl_horizon_dim, cfg):
@@ -49,7 +46,7 @@ class Workspace(object):
 
         total_num_cars = 29
         self.te = traffic_env_eval(self.cfg.params_range, self.train_env.parameters_space.shape, self.cfg.agent.hidden_dim,
-                                   total_num_cars, self.cfg.horizon, self.cfg.sampling_time, self.cfg.agent, render_mode = 'Visualization')
+                                   total_num_cars, self.cfg.horizon, self.cfg.sampling_time, self.cfg.agent, render_mode = self.cfg.render_mode)
 
 
         self.timer = utils.Timer()
@@ -78,11 +75,6 @@ class Workspace(object):
                                           ctrl_horizon_space, int(self.cfg.replay_buffer_size),
                                           self.device)
 
-        # initial MPC setup
-        self.nu = self.train_env.action_space.shape[0]
-        self.N_BATCH = 1
-        self.init_params = [0.3] * self.eval_env.parameters_space.shape[0]
-        
     @property
     def global_step(self):
         return self._global_step
@@ -102,11 +94,12 @@ class Workspace(object):
     
     def eval_MPC(self):
         flag = 1
-        ave_time, ave_fuel, ave_u2,_ = self.te.main(self.agent, self.cfg.method, self.cfg.type)
+        ave_time, ave_fuel, ave_u2, inf_count, _ = self.te.main(self.agent, self.cfg.method, self.cfg.type)
         with self.logger.log_and_dump_ctx(self.global_step, ty='traffic_eval') as log:
             log('ave_time', ave_time)
             log('ave_u2', ave_u2)
             log('ave_fuel', ave_fuel)
+            log('infeasibility_cases', inf_count)
 
 
     def eval(self):

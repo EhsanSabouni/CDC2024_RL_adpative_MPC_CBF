@@ -23,7 +23,7 @@ COMMON_EVAL_FORMAT = [('frame', 'F', 'int'), ('step', 'S', 'int'),
                       ('episode_reward', 'R', 'float'),
                       ('total_time', 'T', 'time')]
 
-COMMON_TRAFFIC_EVAL_FORMAT = [('ave_time','t','float'), ('ave_u2', 'l2u', 'float'),('ave_fuel', 'f', 'float')]
+COMMON_TRAFFIC_EVAL_FORMAT = [('ave_time','ave_time','float'), ('ave_u2', 'ave_u2', 'float'),('ave_fuel', 'ave_fuel', 'float'), ('infeasiblity_cases', 'infeasiblity_cases', 'int')]
 
 class AverageMeter(object):
     def __init__(self):

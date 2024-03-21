@@ -56,7 +56,7 @@ cbf_type: 1
 reward_type : 3
 method : baseline
 type: a
-
+render_mode: Visualization
 
 hydra:
   run:

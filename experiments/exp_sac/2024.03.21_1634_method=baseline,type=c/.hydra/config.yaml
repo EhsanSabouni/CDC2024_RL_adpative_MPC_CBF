@@ -1,0 +1,135 @@
+env: AutonomousCar
+num_train_states: 1000000
+std: 0.5
+stddev_schedule: linear(${std},0.01,100000)
+action_repeat: 1
+num_seed_states: 200
+eval_every_states: 2000
+num_eval_episodes: 5
+save_Freq: 10000
+save_snapshot: false
+replay_buffer_size: 50000
+seed: 9
+device_id: 0
+device: cuda:${device_id}
+save_record: true
+use_tb: true
+experiment: exp
+hidden_depth: 2
+actor_lr: 1.0e-05
+action_range:
+- -1.0
+- 1.0
+critic_lr: 0.0001
+critic_tau: 0.005
+alpha_lr: 0.0001
+batch_size: 1024
+actor_update_frequency: 5
+traffic_eval: 10
+num_expl_steps: ${num_seed_states}
+params_range:
+- - 0.1
+  - 5
+- - 0.1
+  - 5
+- - 0.1
+  - 5
+- - 0.1
+  - 5
+- - 0.1
+  - 5
+- - 0.1
+  - 5
+- - 0.1
+  - 5
+- - 0.1
+  - 5
+- - 0.1
+  - 5
+- - 0.1
+  - 5
+- - 0.1
+  - 5
+- - 0.1
+  - 5
+- - 0.1
+  - 5
+- - 0.1
+  - 5
+- - 0.1
+  - 5
+- - 0.1
+  - 5
+- - 0.0001
+  - 1
+- - 0.0001
+  - 1
+- - 0.0001
+  - 1
+- - 0.0001
+  - 1
+experiment_mode: 2
+explor_type: 0
+road: 1
+T: 30
+verbose: -1
+eps: 0.01
+exit_unconverged: false
+horizon: 5
+sampling_time: 0.2
+cbf_type: 1
+reward_type: 3
+method: baseline
+type: c
+agent_name: sac
+agent:
+  _target_: agents.sac.SACAgent
+  obs_dim: ???
+  net_action_dim: ???
+  ctrl_dim: ???
+  ctrl_horizon_dim: ???
+  action_range: ${action_range}
+  device: ${device}
+  hidden_dim: 512
+  hidden_depth: ${hidden_depth}
+  discount: 0.99
+  init_temperature: 0.1
+  alpha_lr: ${alpha_lr}
+  alpha_betas:
+  - 0.9
+  - 0.999
+  actor_lr: ${actor_lr}
+  actor_betas:
+  - 0.9
+  - 0.999
+  actor_update_frequency: ${actor_update_frequency}
+  critic_lr: ${critic_lr}
+  critic_betas:
+  - 0.9
+  - 0.999
+  critic_tau: ${critic_tau}
+  critic_target_update_frequency: 2
+  batch_size: 1024
+  learnable_temperature: true
+  log_std_bounds:
+  - -10
+  - 10
+  use_tb: ${use_tb}
+mpc:
+  _target_: mpc.mpc.MPC
+  n_state: ???
+  n_ctrl: ???
+  u_lower: ???
+  u_upper: ???
+  T: ${T}
+  lqr_iter: ${lqr_iter}
+  verbose: ${verbose}
+  eps: ${eps}
+  back_eps: 1.0e-07
+  linesearch_decay: 0.2
+  max_linesearch_iter: 10
+  exit_unconverged: ${exit_unconverged}
+  detach_unconverged: true
+  backprop: true
+  not_improved_lim: 5
+  best_cost_eps: 0.0001

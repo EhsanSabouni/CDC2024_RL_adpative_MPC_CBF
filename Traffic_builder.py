@@ -11,10 +11,10 @@ def manual(coordinates, N, total_num_cars):
     data[1] = {"id": 1, "t0": 5.4, "v": 15, "road": 0}
     data[2] = {"id": 2, "t0": 6.8, "v": 14.5, "road": 1}
     data[3] = {"id": 3, "t0": 8, "v": 15, "road": 1}
-    data[4] = {"id": 4, "t0": 4.5 + 6.5, "v": 5, "road": 0}
-    data[5] = {"id": 5, "t0": 5.4 + 6.5, "v": 15, "road": 1}
-    data[6] = {"id": 6, "t0": 6.8 + 6.5, "v": 14.5, "road": 0}
-    data[7] = {"id": 7, "t0": 8 + 6.5, "v": 15, "road": 1}
+    data[4] = {"id": 4, "t0": 11, "v": 5, "road": 0}
+    data[5] = {"id": 5, "t0": 11.9, "v": 15, "road": 1}
+    data[6] = {"id": 6, "t0": 13.3, "v": 14.5, "road": 0}
+    data[7] = {"id": 7, "t0": 14.5, "v": 15, "road": 1}
     data[8] = {"id": 8, "t0": 27, "v": 9, "road": 1}
     data[9] = {"id": 9, "t0": 28.2, "v": 9, "road": 0}
     data[10] = {"id": 10, "t0": 29.5, "v": 9, "road": 1}

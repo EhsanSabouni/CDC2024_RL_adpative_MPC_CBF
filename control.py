@@ -33,7 +33,7 @@ class Control:
         return dx
 
 
-    def mpc_exec(self, ego, x_init, params):
+    def mpc_exec(self, ego, x_init, params, inf_count):
 
         ego.referencegenerator()
 
@@ -455,12 +455,13 @@ class Control:
                 # self.agent.steerdata.append(sol.value(u)[1, 0])
                 # self.agent.obj.append(sol.value(cost))
                 ego.s_vars = sol.value(s)[:, 0]
-                if np.any(ego.s_vars > 0.1):  # or LeftCBF <= 0 or RightCBF <= 0:
+                if np.any(ego.s_vars > 0.1):
+                    inf_count += 1
                     ego.s_vars = [min(sol.value(s)[i, 0], 0.1) for i in range(len(sol.value(s)[:, 0]))]
                     # self.agent.s_vars = sol.value(s)[2, 0]
-                    return "No solution found", np.array([-5.66, 0])
+                    return "No solution found", np.array([-5.66, 0]), inf_count
                 else:
-                    return "solution found", sol.value(u)[:2, 0]
+                    return "solution found", sol.value(u)[:2, 0],inf_count
             else:
 
                 # RightCBF = sol.value(l2fb11 + lgu11 * sol.value(u[0]) + lgdelta11 * sol.value(u[1]))
@@ -481,9 +482,9 @@ class Control:
                 ego.s_vars = sol.value(s)
                 if np.any(sol.value(s) > 0.1):  # or LeftCBF <= 0 or RightCBF <= 0:
                     ego.s_vars = [0.1] * 4
-                    return "No solution found", np.array([-5.66, 0])
+                    return "No solution found", np.array([-5.66, 0]), inf_count
                 else:
-                    return "solution found", sol.value(u[:2])
+                    return "solution found", sol.value(u[:2]), inf_count
 
         except:
             # self.vehicle.RightCBF.append(sol.value(l2fb1 + lgu1 * -5.66 + lgdelta1 * 0))
@@ -492,7 +493,7 @@ class Control:
             # b21 = -5
             # self.agent.RightCBF.append(b11)
             # self.agent.LeftCBF.append(b21)
-            return "No solution found", np.array([-5.66, 0])
+            return "No solution found", np.array([-5.66, 0]), inf_count
 
         # if ego.N > 1:
         #     if ego.id == 0:

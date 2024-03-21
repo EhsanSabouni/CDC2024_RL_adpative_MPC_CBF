@@ -38,12 +38,12 @@ class traffic_env_eval():
 
         que = []
         control = Control(self.env.dt, 'mpc', self.env.N) #Initilizing the controller
-        self.env.timeout = 30
+        self.env.timeout = 60
 
         self.env.simtime = np.append(self.env.simtime , self.env.simindex * self.env.dt)
 
         steps = int(float(self.env.timeout / self.env.dt))
-
+        inf_count = 0
         for self.env.simindex in range(0, steps):
             while (self.env.car_pointer <= self.env.total_num_cars-1 and self.env.simindex == int(cars[self.env.car_pointer].t0 * int(1./self.env.dt))):
                 que = np.append(que, cars[self.env.car_pointer])
@@ -61,10 +61,10 @@ class traffic_env_eval():
                 normalized_observation = utils.normalize(obs, ego.road)
 
 
-                if method == 'RL_MPC':
+                if method == 'RL_MPC_CBF':
                     current_directory = os.path.dirname(__file__)
                     model_path = os.path.join(current_directory, 'saved_actors')
-                    model_path = os.path.join(model_path, 'actor_1.pth')
+                    model_path = os.path.join(model_path, 'actor_2.pth')
 
                     self.actor_model.load_state_dict(torch.load(model_path, map_location=torch.device('cpu')))
                     normalized_observation = torch.FloatTensor(normalized_observation).to('cpu')
@@ -76,22 +76,25 @@ class traffic_env_eval():
                     squashed_params = utils.to_np(squashed_params[0])
                     params = self.unsquash(squashed_params)
                 elif method == 'baseline':
+                    params = 20 * [1]
+                    if ego.id == 0 or ego.id == 3:
+                        params[16], params[17], params[18], params[19] = 2, 2, 2, 2
+                    else:
+                        params[16], params[17], params[18], params[19] = 0.1, 0.1, 10, 10
                     if type == 'c':
-                        params = 20 * [0.5]
+                        params[12], params[13], params[14], params[15] = 4 * [0.5]
                     elif type == 'mc':
-                        params = 20 * [1]
+                        params[12], params[13], params[14], params[15] = 4 * [1]
                     elif type == 'ma':
-                        params = 20 * [3]
+                        params[12], params[13], params[14], params[15] = 4 * [3]
                     elif type == 'a':
-                        params = 20 * [4]
+                        params[12], params[13], params[14], params[15] = 4 * [4]
                     else:
                         raise InvalidInputError("Invalid arguments for baseline type")
                         return None
 
-
-                'end of RL codes'
                 'Control codes to calculate the control input'
-                Status, action= control.mpc_exec(ego, x_init, params)
+                Status, action, inf_count = control.mpc_exec(ego, x_init, params, inf_count)
 
                 ego.acc, ego.steering = action
                 self.env.simindex = self.env.simindex + 1
@@ -115,46 +118,5 @@ class traffic_env_eval():
             plt.ioff()
 
 
-        return self.env.ave_time, self.env.ave_fuel, self.env.ave_energy, self.env.metrics
+        return self.env.ave_time, self.env.ave_fuel, self.env.ave_energy, inf_count,  self.env.metrics
 
-
-
-if __name__ == '__main__':
-    actor_model = DiagGaussianActor(14, 20, 512, 2, [-10, 10]).to('cpu')
-    total_num_cars = 6
-    N = 5
-    dt = 0.2
-    params_range = [[0.1, 5], [0.1, 5], [0.1, 5], [0.1, 5],
-               [0.1, 5], [0.1, 5], [0.1, 5], [0.1, 5], [0.1, 5], [0.1, 5],
-               [0.1, 5], [0.1, 5], [0.1, 5], [0.1, 5], [0.1, 5], [0.1, 5],
-               [0.0001, 1], [0.0001, 1], [0.0001, 1], [0.0001, 1]]
-
-    te = traffic_env_eval(params_range, [20], total_num_cars, N, dt, render_mode = 'Visualization')
-    animation = 1
-    flag = 1
-    ave_time, ave_fuel, ave_energy, metrics = te.main(actor_model,flag)
-
-    fig2, axs2 = plt.subplots(3)
-    fig5, axs5 = plt.subplots(2)
-
-    axs2[0].set_title('2D-position')
-    axs2[1].set_title('speed')
-    axs2[2].set_title('psi')
-    axs5[0].set_title('Acceleration')
-    axs5[1].set_title('Steering Angle')
-
-    start_pointer = 0
-    end_pointer = total_num_cars
-    for p in range(start_pointer, end_pointer):
-        axs2[0].plot(metrics[p]['pos_x'], metrics[p]['pos_y'], label='car {}'.format(p))
-        axs2[1].plot(metrics[p]['time'], metrics[p]['speed'], label='car {}'.format(p))
-        axs2[2].plot(metrics[p]['time'], metrics[p]['psi'], label='car {}'.format(p))
-        axs5[0].plot(metrics[p]['time'], metrics[p]['acc'], label='car {}'.format(p))
-        axs5[1].plot(metrics[p]['time'], metrics[p]['steer'], label='car {}'.format(p))
-
-    axs5[0].legend()
-    axs5[1].legend()
-    axs2[0].legend()
-    axs2[1].legend()
-    axs2[2].legend()
-    plt.show()
