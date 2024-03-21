@@ -30,7 +30,8 @@ This is the video of the simulation results presented in the paper as a concept 
 To generate the neumerical results shown in the table I, please run the following command.
 
 ```
-python train_RL_env_MPC_AV.py
+python train_RL_env_MPC_AV.py method=RL_MPC_CBF/baseline
 ```
+Where method can be set either RL_MPC_CBF which is our proposed framework or baseline.
 ## License
 
