@@ -32,6 +32,10 @@ To generate the neumerical results shown in the table I, please run the followin
 ```
 python train_RL_env_MPC_AV.py method=RL_MPC_CBF/baseline
 ```
-Where method can be set either RL_MPC_CBF which is our proposed framework or baseline.
+Where method can be set either RL_MPC_CBF which is our proposed framework or baseline. For the baseline case there are four modes with which you can run the experiments, conservative, moderately conservative, moderately aggressive, aggressive denoted by 'c', mc,'ma','a' in the code.
+For example in order to run the baseline-conservative, the following command has to be run:
+```
+python train_RL_env_MPC_AV.py method=baseline type=c
+```
 ## License
 
