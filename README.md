@@ -13,7 +13,7 @@ The repository contains the simulation code for the paper "Reinforcement Learnin
 
 Provide a more detailed description of your project here. Explain its purpose, its features, and any other relevant information.
 <p align="center">
-  <img src="video1_RL.gif">
+  <img src="mixed_video.gif">
 </p>
 ## Features -->
 
