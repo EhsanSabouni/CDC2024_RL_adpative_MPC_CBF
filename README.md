@@ -27,12 +27,14 @@ This is the video of the simulation results presented in the paper as a concept 
 </p>
 
 
-To generate the neumerical results shown in the table I, please run the following command.
+To generate the numerical results shown in the table I for the proposed approach, please run the following command.
 
 ```
-python train_RL_env_MPC_AV.py method=RL_MPC_CBF/baseline
+python train_RL_env_MPC_AV.py method=RL_MPC_CBF
+
 ```
-Where method can be set either RL_MPC_CBF which is our proposed framework or baseline. For the baseline case there are four modes with which you can run the experiments, conservative, moderately conservative, moderately aggressive, aggressive denoted by 'c', mc,'ma','a' in the code.
+
+To generate the results for the baseline case you need specify modes with which you can run the experiments, conservative, moderately conservative, moderately aggressive, aggressive denoted by 'c', mc,'ma','a' in the code.
 For example in order to run the baseline-conservative, the following command has to be run:
 ```
 python train_RL_env_MPC_AV.py method=baseline type=c
