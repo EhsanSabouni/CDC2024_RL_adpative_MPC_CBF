@@ -23,7 +23,12 @@ List the key features of your project here.
 
 ## Installation
 
-Explain how to install your project. You can include prerequisites, step-by-step installation instructions, and any additional setup required.
+Please setup the conda environment by running the following command.
 
+```
+conda env create -n envName -f environment.yml
+```
+
+Then download/clone the repository.
 ## License
 
