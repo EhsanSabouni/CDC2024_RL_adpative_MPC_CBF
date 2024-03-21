@@ -37,5 +37,10 @@ For example in order to run the baseline-conservative, the following command has
 ```
 python train_RL_env_MPC_AV.py method=baseline type=c
 ```
+
+Please note that all the runs can be with or without visualization (the default is with Visualization). To disable/enable visualization the following command can be run: 
+```
+python train_RL_env_MPC_AV.py render_mode=None/Visualization
+```
 ## License
 
