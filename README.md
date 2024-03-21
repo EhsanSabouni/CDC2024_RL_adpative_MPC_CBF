@@ -12,8 +12,10 @@ The repository contains the simulation code for the paper "Reinforcement Learnin
 ## About
 
 Provide a more detailed description of your project here. Explain its purpose, its features, and any other relevant information.
-https://github.com/EhsanSabouni/CDC2024_RL_adpative_MPC_CBF/video1_RL.gif
-## Features
+<p align="center">
+  <img src="video1_RL.gif">
+</p>
+## Features -->
 
 List the key features of your project here.
 
