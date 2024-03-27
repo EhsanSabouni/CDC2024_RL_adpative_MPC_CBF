@@ -22,7 +22,7 @@ conda env create -n envName -f environment.yml
 ```
 Then download/clone the repository.
 ## About
-[Your Title](your-project-name/tree/master/your-subfolder)
+[paper](https://arxiv.org/abs/2403.17338)
 ## Results
 This is the video of the simulation results presented in the paper as a concept of proof for feasiblity improvement.
 <p align="center">
