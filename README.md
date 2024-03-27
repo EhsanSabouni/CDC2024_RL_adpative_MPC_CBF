@@ -22,7 +22,7 @@ conda env create -n envName -f environment.yml
 ```
 Then download/clone the repository.
 ## About
-[[paper]](https://arxiv.org/abs/2403.1733)
+We have proposed a control method based on RHC using MPC with CBFs which can provably guarantee safety in safety-critical control systems. [[paper]](https://arxiv.org/abs/2403.1733)
 ![alt text](Figures/RL_pipline.jpg)
 
 ## Results
