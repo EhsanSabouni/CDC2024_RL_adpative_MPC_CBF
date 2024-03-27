@@ -32,7 +32,6 @@ To generate the numerical results shown in the table I for the proposed approach
 
 ```
 python train_RL_env_MPC_AV.py method=RL_MPC_CBF
-
 ```
 
 To generate the results for the baseline case you need specify modes with which you can run the experiments, conservative, moderately conservative, moderately aggressive, aggressive denoted by 'c', mc,'ma','a' in the code.
