@@ -1,7 +1,7 @@
 # Reinforcement Learning-based Adaptive Control Barrier Functions using Receding Horizon Control for Safety-Critical Systems
 [![License](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
 
-The repository contains the simulation code for the paper "Reinforcement Learning-based Adaptive Control Barrier Functions using Receding Horizon Control for Safety-Critical Systems" submitted at CDC 2024.
+The repository contains the simulation code for the paper "Reinforcement Learning-based Adaptive Control Barrier Functions using Receding Horizon Control for Safety-Critical Systems" submitted at CDC 2024 [[paper]](https://arxiv.org/abs/2403.1733).
 
 ## Table of Contents
 - [Compatibility](#compatibility)
@@ -21,7 +21,7 @@ conda env create -n envName -f environment.yml
 ```
 Then download/clone the repository.
 ## About
-We have proposed a control method based on RHC using MPC with CBFs which can provably guarantee safety in safety-critical control systems. [[paper]](https://arxiv.org/abs/2403.1733)
+We have proposed a control method based on RHC using MPC with CBFs which can provably guarantee safety in safety-critical control systems. 
 ![alt text](Figures/RL_pipline.jpg)
 
 ## Results
