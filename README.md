@@ -22,7 +22,8 @@ conda env create -n envName -f environment.yml
 ```
 Then download/clone the repository.
 ## About
-[[paper]](https://arxiv.org/abs/2403.17338)
+[[paper]](https://arxiv.org/abs/2403.1733)
+![alt text](Figures/RLpipeline.PNG)
 ## Results
 This is the video of the simulation results presented in the paper as a concept of proof for feasiblity improvement.
 <p align="center">
